@@ -1,71 +1,104 @@
 // ============================================
-// INITIALIZATION
+// INITIALIZATION - FIXED VERSION
 // ============================================
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize AOS (Animate On Scroll)
-    AOS.init({
-        duration: 1000,
-        easing: 'ease-out-cubic',
-        once: true,
-        offset: 100
-    });
-
-    // Initialize Swiper Gallery
-    initSwiper();
+    console.log('🎉 Wedding website loaded!');
     
-    // Initialize Countdown Timer
+    // Initialize AOS (Animate On Scroll) - with error handling
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            duration: 1000,
+            easing: 'ease-out-cubic',
+            once: true,
+            offset: 100
+        });
+        console.log('✓ AOS animations initialized');
+    } else {
+        console.warn('⚠ AOS library not loaded');
+    }
+
+    // Initialize Swiper Gallery - with error handling
+    if (typeof Swiper !== 'undefined') {
+        initSwiper();
+        console.log('✓ Swiper gallery initialized');
+    } else {
+        console.warn('⚠ Swiper library not loaded');
+    }
+    
+    // Initialize Countdown Timer - ALWAYS runs
     initCountdown();
+    console.log('✓ Countdown timer started');
     
     // Smooth scrolling for anchor links
     initSmoothScroll();
+    console.log('✓ Smooth scrolling enabled');
     
     // Parallax effect on hero section
     initParallax();
+    console.log('✓ Parallax effects ready');
 });
 
 // ============================================
 // SWIPER GALLERY INITIALIZATION
 // ============================================
 function initSwiper() {
-    const gallerySwiper = new Swiper('.gallery-swiper', {
-        slidesPerView: 1,
-        spaceBetween: 20,
-        loop: true,
-        autoplay: {
-            delay: 4000,
-            disableOnInteraction: false,
-        },
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-        breakpoints: {
-            640: {
-                slidesPerView: 2,
-                spaceBetween: 20,
+    try {
+        const gallerySwiper = new Swiper('.gallery-swiper', {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
             },
-            1024: {
-                slidesPerView: 3,
-                spaceBetween: 30,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
             },
-        },
-    });
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                },
+            },
+        });
+    } catch (error) {
+        console.error('Swiper error:', error);
+    }
 }
 
 // ============================================
-// COUNTDOWN TIMER
+// COUNTDOWN TIMER - FIXED VERSION
 // ============================================
 function initCountdown() {
-    // Set your wedding date here (YYYY, MM-1, DD, HH, MM, SS)
-    // Note: Month is 0-indexed (0 = January, 5 = June)
-    const weddingDate = new Date(2025, 5, 15, 14, 0, 0).getTime();
+    // Check if countdown elements exist
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const secondsEl = document.getElementById('seconds');
     
-    // Update countdown every second
-    const countdownInterval = setInterval(function() {
+    if (!daysEl || !hoursEl || !minutesEl || !secondsEl) {
+        console.error('❌ Countdown timer elements not found! Check your HTML.');
+        return;
+    }
+    
+    // Set your wedding date here (YYYY, MM-1, DD, HH, MM, SS)
+    // Note: Month is 0-indexed (0 = January, 5 = June, 11 = December)
+    // Current setting: June 15, 2025 at 2:00 PM
+    const weddingDate = new Date(2027, 1, 22, 9, 0, 0).getTime();
+    
+    console.log('Wedding date set to:', new Date(weddingDate));
+    
+    // Function to update the countdown
+    function updateCountdown() {
         const now = new Date().getTime();
         const distance = weddingDate - now;
         
@@ -84,22 +117,32 @@ function initCountdown() {
         // If countdown is finished
         if (distance < 0) {
             clearInterval(countdownInterval);
-            document.getElementById('days').textContent = '00';
-            document.getElementById('hours').textContent = '00';
-            document.getElementById('minutes').textContent = '00';
-            document.getElementById('seconds').textContent = '00';
+            daysEl.textContent = '00';
+            hoursEl.textContent = '00';
+            minutesEl.textContent = '00';
+            secondsEl.textContent = '00';
+            console.log('🎊 Wedding day has arrived!');
         }
-    }, 1000);
+    }
+    
+    // Initial update
+    updateCountdown();
+    
+    // Update countdown every second
+    const countdownInterval = setInterval(updateCountdown, 1000);
 }
 
 // Helper function to update countdown with smooth animation
 function updateCountdownDisplay(elementId, value) {
     const element = document.getElementById(elementId);
+    if (!element) return;
+    
     const formattedValue = value.toString().padStart(2, '0');
     
     if (element.textContent !== formattedValue) {
+        // Add animation effect
         element.style.transform = 'scale(1.2)';
-        element.style.color = '#c9a58a';
+        element.style.transition = 'transform 0.3s ease';
         
         setTimeout(() => {
             element.textContent = formattedValue;
@@ -117,14 +160,15 @@ function initSmoothScroll() {
     
     links.forEach(link => {
         link.addEventListener('click', function(e) {
-            e.preventDefault();
-            
             const targetId = this.getAttribute('href');
+            
+            // Skip if it's just "#"
             if (targetId === '#') return;
             
             const targetSection = document.querySelector(targetId);
             
             if (targetSection) {
+                e.preventDefault();
                 const offsetTop = targetSection.offsetTop - 80;
                 
                 window.scrollTo({
@@ -142,11 +186,16 @@ function initSmoothScroll() {
 function initParallax() {
     const hero = document.querySelector('.hero-section');
     
+    if (!hero) {
+        console.warn('⚠ Hero section not found for parallax');
+        return;
+    }
+    
     window.addEventListener('scroll', function() {
         const scrolled = window.pageYOffset;
         const parallaxSpeed = 0.5;
         
-        if (hero && scrolled < window.innerHeight) {
+        if (scrolled < window.innerHeight) {
             hero.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
         }
     });
@@ -155,9 +204,6 @@ function initParallax() {
 // ============================================
 // LAZY LOADING IMAGES (Intersection Observer)
 // ============================================
-// This is automatically handled by the loading="lazy" attribute in HTML
-// But here's an additional implementation for better browser support
-
 if ('IntersectionObserver' in window) {
     const imageObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
@@ -180,97 +226,6 @@ if ('IntersectionObserver' in window) {
 }
 
 // ============================================
-// SCROLL TO TOP BUTTON (Optional Enhancement)
-// ============================================
-// Uncomment this section if you want a "scroll to top" button
-
-/*
-// Create scroll to top button
-const scrollTopBtn = document.createElement('button');
-scrollTopBtn.innerHTML = '↑';
-scrollTopBtn.className = 'scroll-to-top';
-scrollTopBtn.style.cssText = `
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 50px;
-    height: 50px;
-    background: var(--primary-color);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    font-size: 24px;
-    cursor: pointer;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    z-index: 1000;
-    box-shadow: 0 4px 12px rgba(201, 165, 138, 0.3);
-`;
-
-document.body.appendChild(scrollTopBtn);
-
-// Show/hide button based on scroll position
-window.addEventListener('scroll', function() {
-    if (window.pageYOffset > 300) {
-        scrollTopBtn.style.opacity = '1';
-        scrollTopBtn.style.visibility = 'visible';
-    } else {
-        scrollTopBtn.style.opacity = '0';
-        scrollTopBtn.style.visibility = 'hidden';
-    }
-});
-
-// Scroll to top when clicked
-scrollTopBtn.addEventListener('click', function() {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-});
-*/
-
-// ============================================
-// FORM VALIDATION (Optional Enhancement)
-// ============================================
-// If you create a custom RSVP form instead of using Google Forms,
-// you can add validation here
-
-/*
-function validateRSVPForm() {
-    const form = document.getElementById('rsvp-form');
-    
-    if (form) {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const attendance = document.getElementById('attendance').value;
-            
-            // Basic validation
-            if (!name || !email || !attendance) {
-                alert('Please fill in all required fields');
-                return false;
-            }
-            
-            // Email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert('Please enter a valid email address');
-                return false;
-            }
-            
-            // If validation passes, you can submit the form
-            // For now, just show a success message
-            alert('Thank you for your RSVP! We look forward to celebrating with you.');
-            form.reset();
-        });
-    }
-}
-*/
-
-// ============================================
 // PERFORMANCE OPTIMIZATION
 // ============================================
 // Debounce function for scroll events
@@ -286,15 +241,9 @@ function debounce(func, wait) {
     };
 }
 
-// Use debounced scroll handler for better performance
-window.addEventListener('scroll', debounce(() => {
-    // Your scroll-based functions here
-}, 10));
-
 // ============================================
 // ACCESSIBILITY ENHANCEMENTS
 // ============================================
-// Add keyboard navigation support
 document.addEventListener('keydown', function(e) {
     // Press 'Esc' to close any modals (if you add them)
     if (e.key === 'Escape') {
@@ -303,24 +252,21 @@ document.addEventListener('keydown', function(e) {
 });
 
 // ============================================
-// CONSOLE MESSAGE (Optional Fun Touch)
+// CONSOLE MESSAGE
 // ============================================
 console.log('%c💍 Welcome to our wedding website! 💍', 'font-size: 20px; color: #c9a58a; font-weight: bold;');
 console.log('%cWe\'re so excited to celebrate with you!', 'font-size: 14px; color: #6b6b6b;');
 
 // ============================================
-// LOADING SCREEN (Optional Enhancement)
+// DEBUG MODE - Check if libraries loaded
 // ============================================
-// Uncomment if you want to add a loading screen
-
-/*
 window.addEventListener('load', function() {
-    const loader = document.querySelector('.loader');
-    if (loader) {
-        loader.style.opacity = '0';
-        setTimeout(() => {
-            loader.style.display = 'none';
-        }, 500);
-    }
+    console.log('=== LIBRARY STATUS ===');
+    console.log('AOS:', typeof AOS !== 'undefined' ? '✓ Loaded' : '✗ Not loaded');
+    console.log('Swiper:', typeof Swiper !== 'undefined' ? '✓ Loaded' : '✗ Not loaded');
+    console.log('===================');
+    
+    // Check countdown elements
+    const countdownExists = document.getElementById('days') !== null;
+    console.log('Countdown Timer:', countdownExists ? '✓ Elements found' : '✗ Elements missing');
 });
-*/
