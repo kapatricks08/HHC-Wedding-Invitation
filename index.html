@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="You are cordially invited to the wedding of John & Jane">
+    <title>John & Jane - Wedding Invitation</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Gilda+Display&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="subtitle fade-in-up" style="animation-delay: 0.3s;">Together with their families</p>
+                <h1 class="couple-names fade-in-up" style="animation-delay: 0.6s;">
+                    John <span class="ampersand">&</span> Jane
+                </h1>
+                <p class="tagline fade-in-up" style="animation-delay: 0.9s;">
+                    Two hearts, one beautiful journey
+                </p>
+                <p class="wedding-date fade-in-up" style="animation-delay: 1.2s;">
+                    June 15, 2025
+                </p>
+                <a href="#rsvp" class="cta-button fade-in-up" style="animation-delay: 1.5s;">
+                    RSVP Now
+                </a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span></span>
+        </div>
+    </section>
+
+    <!-- Countdown Timer Section -->
+    <section id="countdown" class="countdown-section">
+        <div class="container">
+            <h2 data-aos="fade-up">Counting down to our special day</h2>
+            <div class="countdown-timer" data-aos="fade-up" data-aos-delay="200">
+                <div class="time-unit">
+                    <span class="time-number" id="days">00</span>
+                    <span class="time-label">Days</span>
+                </div>
+                <div class="time-unit">
+                    <span class="time-number" id="hours">00</span>
+                    <span class="time-label">Hours</span>
+                </div>
+                <div class="time-unit">
+                    <span class="time-number" id="minutes">00</span>
+                    <span class="time-label">Minutes</span>
+                </div>
+                <div class="time-unit">
+                    <span class="time-number" id="seconds">00</span>
+                    <span class="time-label">Seconds</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section id="story" class="story-section">
+        <div class="container">
+            <h2 data-aos="fade-up">Our Story</h2>
+            <div class="story-timeline">
+                <div class="story-item" data-aos="fade-right" data-aos-delay="100">
+                    <div class="story-date">Spring 2019</div>
+                    <div class="story-content">
+                        <h3>The First Meeting</h3>
+                        <p>Our paths crossed on a beautiful spring afternoon at a mutual friend's gathering. What started as a casual conversation turned into hours of endless laughter and connection that neither of us wanted to end.</p>
+                    </div>
+                </div>
+                <div class="story-item" data-aos="fade-left" data-aos-delay="200">
+                    <div class="story-date">Winter 2020</div>
+                    <div class="story-content">
+                        <h3>The First Date</h3>
+                        <p>On a crisp winter evening, John finally gathered the courage to ask Jane out for coffee. That simple coffee date turned into a magical evening walk through the city, talking about dreams, life, and everything in between.</p>
+                    </div>
+                </div>
+                <div class="story-item" data-aos="fade-right" data-aos-delay="300">
+                    <div class="story-date">Summer 2022</div>
+                    <div class="story-content">
+                        <h3>Growing Together</h3>
+                        <p>Through adventures, challenges, and countless beautiful moments, our love continued to grow stronger. We discovered that we were not just lovers, but best friends who brought out the best in each other.</p>
+                    </div>
+                </div>
+                <div class="story-item" data-aos="fade-left" data-aos-delay="400">
+                    <div class="story-date">December 2024</div>
+                    <div class="story-content">
+                        <h3>The Proposal</h3>
+                        <p>Under a starlit sky at our favorite beach, John got down on one knee and asked Jane to be his forever. With tears of joy and an overflowing heart, she said yes! Now, we're ready to begin our greatest adventure yet.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prenup Gallery Section -->
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <h2 data-aos="fade-up">Our Moments</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">A glimpse into our love story</p>
+            
+            <!-- Swiper Gallery -->
+            <div class="swiper gallery-swiper" data-aos="fade-up" data-aos-delay="200">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=800&h=1000&fit=crop" alt="Prenup photo 1" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&h=1000&fit=crop" alt="Prenup photo 2" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=800&h=1000&fit=crop" alt="Prenup photo 3" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800&h=1000&fit=crop" alt="Prenup photo 4" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=800&h=1000&fit=crop" alt="Prenup photo 5" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800&h=1000&fit=crop" alt="Prenup photo 6" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Details Section -->
+    <section id="details" class="details-section">
+        <div class="container">
+            <h2 data-aos="fade-up">Event Details</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Join us as we celebrate our love</p>
+            
+            <div class="details-grid">
+                <!-- Ceremony -->
+                <div class="detail-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="detail-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                        </svg>
+                    </div>
+                    <h3>Ceremony</h3>
+                    <div class="detail-info">
+                        <p class="detail-time">2:00 PM</p>
+                        <p class="detail-venue">St. Mary's Cathedral</p>
+                        <p class="detail-address">123 Church Street<br>Manila, Philippines</p>
+                    </div>
+                </div>
+
+                <!-- Reception -->
+                <div class="detail-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="detail-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 12h18"></path>
+                            <path d="M3 6h18"></path>
+                            <path d="M3 18h18"></path>
+                        </svg>
+                    </div>
+                    <h3>Reception</h3>
+                    <div class="detail-info">
+                        <p class="detail-time">5:00 PM</p>
+                        <p class="detail-venue">Grand Ballroom</p>
+                        <p class="detail-address">The Manila Hotel<br>One Rizal Park, Manila</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dresscode" data-aos="fade-up" data-aos-delay="400">
+                <h4>Dress Code</h4>
+                <p>Formal Attire</p>
+                <p class="dresscode-note">Ladies: Long gowns | Gentlemen: Suit and tie</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section id="location" class="location-section">
+        <div class="container">
+            <h2 data-aos="fade-up">Location</h2>
+            
+            <div class="location-grid">
+                <!-- Church Map -->
+                <div class="location-item" data-aos="fade-up" data-aos-delay="100">
+                    <h3>Ceremony Venue</h3>
+                    <div class="map-container">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.4858814058344!2d120.98195831483072!3d14.577952789822177!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397ca0e58e2b503%3A0x37d2f4b88a6bb7e!2sManila%20Cathedral!5e0!3m2!1sen!2sph!4v1234567890123!5m2!1sen!2sph" 
+                            width="100%" 
+                            height="350" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                    <a href="https://maps.google.com" target="_blank" class="map-link">Open in Google Maps</a>
+                </div>
+
+                <!-- Reception Map -->
+                <div class="location-item" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Reception Venue</h3>
+                    <div class="map-container">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.4185857867195!2d120.97426331483076!3d14.581945889818972!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397ca21b2e67c87%3A0x48d0e2c7a948176d!2sThe%20Manila%20Hotel!5e0!3m2!1sen!2sph!4v1234567890123!5m2!1sen!2sph" 
+                            width="100%" 
+                            height="350" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                    <a href="https://maps.google.com" target="_blank" class="map-link">Open in Google Maps</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section id="rsvp" class="rsvp-section">
+        <div class="container">
+            <h2 data-aos="fade-up">RSVP</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+                Kindly confirm your attendance by May 15, 2025
+            </p>
+            
+            <div class="rsvp-container" data-aos="fade-up" data-aos-delay="200">
+                <iframe 
+                     src="https://docs.google.com/forms/d/e/1FAIpQLSd2Ab1ZTMywB9FiV0try_IZ_jUpKxCSuW-4z9ImUqdVHmgsXA/viewform?embedded=true"
+                    width="100%" 
+                    height="800" 
+                    frameborder="0" 
+                    marginheight="0" 
+                    marginwidth="0">
+                    Loading…
+                </iframe>
+            </div>
+
+            <p class="rsvp-note" data-aos="fade-up" data-aos-delay="300">
+                For any questions, please contact us at:<br>
+                <a href="mailto:johnandjane@wedding.com">johnandjane@wedding.com</a> | 
+                <a href="tel:+639123456789">+63 912 345 6789</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-message">
+                We can't wait to celebrate with you!
+            </p>
+            <div class="footer-names">John & Jane</div>
+            <div class="footer-date">June 15, 2025</div>
+            <div class="footer-heart">❤</div>
+        </div>
+    </footer>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Main JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
