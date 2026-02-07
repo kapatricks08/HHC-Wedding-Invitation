@@ -1447,3 +1447,445 @@ button:focus {
     outline: 2px solid var(--primary-color);
     outline-offset: 2px;
 }
+
+
+
+
+
+
+.rsvp-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.rsvp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 15px;
+  font-family: inherit;
+}
+
+.form-group textarea {
+  resize: none;
+  height: 120px;
+}
+
+.rsvp-btn {
+  background-color: #c8a165;
+  color: #fff;
+  border: none;
+  padding: 14px;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.rsvp-btn:hover {
+  background-color: #a9864a;
+}
+
+.rsvp-popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.rsvp-popup-box {
+  background: #fff;
+  padding: 35px 30px;
+  border-radius: 14px;
+  max-width: 380px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+  animation: popupFade 0.3s ease;
+}
+
+.popup-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: #c8a165;
+  color: #fff;
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rsvp-popup-box h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.rsvp-popup-box p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 22px;
+}
+
+.rsvp-popup-box button {
+  background: #c8a165;
+  color: #fff;
+  border: none;
+  padding: 11px 26px;
+  border-radius: 25px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.rsvp-popup-box button:hover {
+  background: #a9864a;
+}
+
+@keyframes popupFade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+/* Dress Code Section Styles */
+.dresscode-section {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.dresscode-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(194, 157, 137, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.dresscode-section::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(194, 157, 137, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.dresscode-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* Main Dress Code Card */
+.dresscode-main-card {
+    text-align: center;
+    margin-bottom: 60px;
+    padding: 40px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dresscode-main-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
+}
+
+.dresscode-icon {
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.dresscode-icon svg {
+    stroke: #c29d89;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.dresscode-title {
+    font-family: 'Gilda Display', serif;
+    font-size: 2.5rem;
+    color: #2d3748;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.dresscode-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: #718096;
+    font-style: italic;
+}
+
+/* Dress Code Grid */
+.dresscode-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.dresscode-card {
+    background: white;
+    border-radius: 16px;
+    padding: 35px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.dresscode-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #c29d89, #e8b298);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.dresscode-card:hover::before {
+    transform: scaleX(1);
+}
+
+.dresscode-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 50px rgba(194, 157, 137, 0.2);
+    border-color: #c29d89;
+}
+
+.ladies-card {
+    background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);
+}
+
+.gentlemen-card {
+    background: linear-gradient(135deg, #f0f4f8 0%, #ffffff 100%);
+}
+
+.card-header {
+    text-align: center;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #f7fafc;
+}
+
+.gender-icon {
+    display: inline-block;
+    margin-bottom: 15px;
+    padding: 15px;
+    background: linear-gradient(135deg, #c29d89, #e8b298);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.gender-icon svg {
+    display: block;
+    fill: white;
+}
+
+.card-header h4 {
+    font-family: 'Gilda Display', serif;
+    font-size: 1.6rem;
+    color: #2d3748;
+    margin: 0;
+}
+
+/* Dress Code List */
+.dresscode-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px 0;
+}
+
+.dresscode-list li {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    font-family: 'Lato', sans-serif;
+    font-size: 1rem;
+    color: #4a5568;
+    transition: all 0.3s ease;
+}
+
+.dresscode-list li:hover {
+    transform: translateX(5px);
+    color: #c29d89;
+}
+
+.check-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: linear-gradient(135deg, #c29d89, #e8b298);
+    color: white;
+    border-radius: 50%;
+    margin-right: 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+/* Color Guide */
+.color-guide {
+    background: #f7fafc;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 20px;
+}
+
+.color-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.color-palette {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.color-swatch {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 3px solid white;
+}
+
+.color-swatch:hover {
+    transform: scale(1.2) rotate(5deg);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.color-note {
+    font-family: 'Lato', sans-serif;
+    font-size: 0.85rem;
+    color: #718096;
+    text-align: center;
+    font-style: italic;
+    margin: 0;
+}
+
+/* Additional Notes */
+.dresscode-notes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.note-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.note-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(194, 157, 137, 0.15);
+}
+
+.note-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.note-item p {
+    font-family: 'Lato', sans-serif;
+    font-size: 0.95rem;
+    color: #4a5568;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .dresscode-section {
+        padding: 60px 0;
+    }
+
+    .dresscode-title {
+        font-size: 2rem;
+    }
+
+    .dresscode-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .dresscode-main-card {
+        padding: 30px 20px;
+    }
+
+    .dresscode-card {
+        padding: 25px;
+    }
+
+    .color-palette {
+        gap: 8px;
+    }
+
+    .color-swatch {
+        width: 35px;
+        height: 35px;
+    }
+
+    .dresscode-notes {
+        grid-template-columns: 1fr;
+    }
+}
