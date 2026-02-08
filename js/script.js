@@ -350,7 +350,8 @@ form.addEventListener("submit", function(e) {
 
   console.log("Data being sent:", data); // For debugging
 
-  fetch("https://script.google.com/macros/s/AKfycbyRiiQH8FT349r62g2MEnvavcFCEKxlK-n5FK1eeANivL7VS5ZTe1fy5Or1mv-MWj4/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbwHD-8fLL5v5-Xsh22JPxEfG-HjB5wL19kK7CP1Lc4rmHCYpy4DEnmm9myC8ICXkg-H/exec", 
+    {
     method: "POST",
     mode: "no-cors",
     headers: { "Content-Type": "application/json" },

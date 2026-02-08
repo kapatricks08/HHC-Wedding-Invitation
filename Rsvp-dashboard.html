@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding RSVP Dashboard - John & Jane</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Gilda+Display&family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/rsvp-dashboard.css">
+   
+</head>
+<body>
+
+    <!-- PASSWORD PROTECTION SCREEN -->
+    <div id="passwordScreen" class="password-screen">
+        <div class="password-box">
+            <h2>Admin Dashboard</h2>
+            <p>Enter your password to access the RSVP data</p>
+            <div class="password-input-wrapper">
+                <input type="password" id="passwordInput" class="password-input" placeholder="Enter password">
+                <span class="password-icon">🔑</span>
+            </div>
+            <button onclick="checkPassword()" class="password-btn">
+                Unlock Dashboard
+            </button>
+            <p class="error-message" id="errorMessage">❌ Incorrect password. Please try again.</p>
+        </div>
+    </div>
+
+    <!-- MAIN DASHBOARD CONTENT -->
+    <div id="dashboardContent" class="container hidden">
+        
+        <!-- HEADER -->
+        <div class="dashboard-header fade-in">
+            <div class="header-content">
+                <div class="header-ornament">
+                    <span class="ornament-line"></span>
+                    <span class="ornament-symbol">✦</span>
+                    <span class="ornament-line"></span>
+                </div>
+                <h1>Wedding RSVP Dashboard</h1>
+                <p>John & Jane's Special Day - June 15, 2025</p>
+                <div class="last-updated" id="lastUpdated">
+                    Last updated: <span id="updateTime">--</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- STATS CARDS -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">📊</div>
+                <div class="stat-number" id="totalRsvps">0</div>
+                <div class="stat-label">Total Responses</div>
+                <div class="stat-sublabel">All RSVP submissions</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">✅</div>
+                <div class="stat-number" id="attendingCount">0</div>
+                <div class="stat-label">Attending</div>
+                <div class="stat-sublabel">Confirmed guests</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">❌</div>
+                <div class="stat-number" id="notAttendingCount">0</div>
+                <div class="stat-label">Not Attending</div>
+                <div class="stat-sublabel">Regrets received</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <div class="stat-number" id="totalGuests">0</div>
+                <div class="stat-label">Total Headcount</div>
+                <div class="stat-sublabel">Including +1 guests</div>
+            </div>
+        </div>
+
+        <!-- CONTROLS SECTION -->
+        <div class="controls-section">
+            <div class="controls-header">
+                <h3 class="controls-title">Filter & Search</h3>
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="loadRSVPData()">
+                        <span>🔄</span>
+                        <span>Refresh Data</span>
+                    </button>
+                    <button class="btn btn-secondary" onclick="exportToCSV()">
+                        <span>📥</span>
+                        <span>Export CSV</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="controls-filters">
+                <div class="filter-group">
+                    <label class="filter-label">Search Guest</label>
+                    <input type="text" id="searchInput" class="filter-input" placeholder="Search by name or email..." onkeyup="filterTable()">
+                    <span class="filter-icon">🔍</span>
+                </div>
+                
+                <div class="filter-group">
+                    <label class="filter-label">Filter Status</label>
+                    <select id="filterStatus" class="filter-input" onchange="filterTable()">
+                        <option value="all">All Responses</option>
+                        <option value="Yes">✅ Attending Only</option>
+                        <option value="No">❌ Not Attending Only</option>
+                    </select>
+                    <span class="filter-icon">🎯</span>
+                </div>
+                
+                <div class="filter-group">
+                    <label class="filter-label">Filter Guests</label>
+                    <select id="filterGuests" class="filter-input" onchange="filterTable()">
+                        <option value="all">All Guest Counts</option>
+                        <option value="solo">Solo (1 person)</option>
+                        <option value="plus1">With +1 (2+ people)</option>
+                    </select>
+                    <span class="filter-icon">👥</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- TABLE SECTION -->
+        <div class="table-section">
+            <div class="table-header">
+                <h3 class="table-title">Guest List</h3>
+                <div class="table-count">
+                    <span id="filteredCount">0</span> guests shown
+                </div>
+            </div>
+            
+            <div class="table-container" id="tableContent">
+                <div class="loading-state">
+                    <div class="spinner"></div>
+                    <div class="loading-text">Loading your guest data...</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    
+<script src="js/rsvp-dashboard.js"></script>
+</body>
+</html>
