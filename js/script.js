@@ -428,3 +428,173 @@ document.addEventListener('DOMContentLoaded', function() {
     }, { once: true });
 });
 // Wedding song MP3 scripts ends here
+
+
+
+// Prenup Videos scripts Starts here
+(function() {
+    'use strict';
+
+    // Wait for DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        initPrenupVideoSection();
+    });
+
+    function initPrenupVideoSection() {
+        // Main featured video functionality
+        initFeaturedVideo();
+        
+        // Video grid cards functionality
+        initVideoCards();
+    }
+
+    // Featured Video Player
+    function initFeaturedVideo() {
+        const playButton = document.getElementById('playButton');
+        const videoPlaceholder = document.getElementById('videoPlaceholder');
+        const videoPlayer = document.getElementById('videoPlayer');
+        const youtubePlayer = document.getElementById('youtubePlayer');
+
+        // Replace this with your actual YouTube video ID
+        const MAIN_VIDEO_ID = 'dQw4w9WgXcQ'; // Example: 'dQw4w9WgXcQ'
+
+        if (playButton && videoPlaceholder) {
+            playButton.addEventListener('click', function(e) {
+                e.stopPropagation();
+                playFeaturedVideo();
+            });
+
+            videoPlaceholder.addEventListener('click', function() {
+                playFeaturedVideo();
+            });
+        }
+
+        function playFeaturedVideo() {
+            if (videoPlaceholder && videoPlayer && youtubePlayer) {
+                // Hide placeholder
+                videoPlaceholder.style.display = 'none';
+                
+                // Show video player
+                videoPlayer.style.display = 'block';
+                
+                // Set YouTube video URL with autoplay
+                const videoSrc = `https://www.youtube.com/embed/${MAIN_VIDEO_ID}?autoplay=1&rel=0&modestbranding=1`;
+                youtubePlayer.src = videoSrc;
+
+                // Optional: Track video play event
+                trackVideoPlay('Featured Prenup Video');
+            }
+        }
+    }
+
+    // Video Grid Cards
+    function initVideoCards() {
+        const videoCards = document.querySelectorAll('.video-card');
+
+        videoCards.forEach(function(card) {
+            card.addEventListener('click', function() {
+                const videoId = this.getAttribute('data-video-id');
+                const videoTitle = this.querySelector('h4')?.textContent || 'Prenup Video';
+
+                if (videoId) {
+                    playVideoInMainPlayer(videoId, videoTitle);
+                }
+            });
+
+            // Add keyboard accessibility
+            card.setAttribute('tabindex', '0');
+            card.setAttribute('role', 'button');
+            card.setAttribute('aria-label', 'Play video');
+
+            card.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.click();
+                }
+            });
+        });
+    }
+
+    // Play selected video in main player
+    function playVideoInMainPlayer(videoId, videoTitle) {
+        const mainVideoWrapper = document.getElementById('mainVideoWrapper');
+        const videoPlaceholder = document.getElementById('videoPlaceholder');
+        const videoPlayer = document.getElementById('videoPlayer');
+        const youtubePlayer = document.getElementById('youtubePlayer');
+
+        if (mainVideoWrapper && youtubePlayer) {
+            // Scroll to main video player
+            mainVideoWrapper.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'center' 
+            });
+
+            // Small delay for smooth scroll
+            setTimeout(function() {
+                // Hide placeholder
+                if (videoPlaceholder) {
+                    videoPlaceholder.style.display = 'none';
+                }
+
+                // Show video player
+                if (videoPlayer) {
+                    videoPlayer.style.display = 'block';
+                }
+
+                // Update video source with autoplay
+                const videoSrc = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+                youtubePlayer.src = videoSrc;
+
+                // Track video play
+                trackVideoPlay(videoTitle);
+            }, 500);
+        }
+    }
+
+    // Analytics tracking (optional)
+    function trackVideoPlay(videoTitle) {
+        // You can integrate with Google Analytics or other analytics tools
+        console.log('Video played:', videoTitle);
+
+        // Example with Google Analytics (if implemented):
+        // if (typeof gtag !== 'undefined') {
+        //     gtag('event', 'video_play', {
+        //         'video_title': videoTitle,
+        //         'event_category': 'Video',
+        //         'event_label': videoTitle
+        //     });
+        // }
+    }
+
+    // Optional: Stop video when scrolling away
+    function handleVideoStop() {
+        const videoPlayer = document.getElementById('videoPlayer');
+        const youtubePlayer = document.getElementById('youtubePlayer');
+
+        if (!videoPlayer || !youtubePlayer) return;
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (!entry.isIntersecting) {
+                    // Video is out of view - pause it
+                    youtubePlayer.src = '';
+                    videoPlayer.style.display = 'none';
+                    
+                    const videoPlaceholder = document.getElementById('videoPlaceholder');
+                    if (videoPlaceholder) {
+                        videoPlaceholder.style.display = 'block';
+                    }
+                }
+            });
+        }, {
+            threshold: 0.5
+        });
+
+        observer.observe(videoPlayer);
+    }
+
+    // Call this function if you want videos to stop when scrolling away
+    // handleVideoStop();
+
+})();
+// Prenup Videos scripts Ends Here
