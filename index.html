@@ -21,7 +21,38 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Wedding Song starts Here -->
+    <!-- Music Player Widget -->
+<div class="music-player" id="musicPlayer">
+    <button class="music-toggle" id="musicToggle">
+        <svg class="play-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8 5v14l11-7z"/>
+        </svg>
+        <svg class="pause-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="display: none;">
+            <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+        </svg>
+    </button>
     
+    <div class="music-info">
+        <span class="music-title">🎵 Wedding Music</span>
+        <div class="volume-control">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>
+            </svg>
+            <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="50">
+        </div>
+    </div>
+    
+    <!-- Audio Element -->
+    <audio id="backgroundMusic" loop>
+        <!-- Replace this with your wedding song URL -->
+        <source src="your-music-file.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+</div>
+    <!-- Wedding Song Ends Here -->
+
+
     <!-- Hero Section -->
     <section id="hero" class="hero-section">
         <div class="hero-overlay"></div>

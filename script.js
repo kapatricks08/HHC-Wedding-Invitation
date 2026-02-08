@@ -374,3 +374,57 @@ function closePopup() {
   popup.style.display = "none";
 }
 //RSVP Scripts Ends Here
+
+
+
+// Wedding song MP3 scripts starts here
+document.addEventListener('DOMContentLoaded', function() {
+    const musicToggle = document.getElementById('musicToggle');
+    const backgroundMusic = document.getElementById('backgroundMusic');
+    const volumeSlider = document.getElementById('volumeSlider');
+    const playIcon = musicToggle.querySelector('.play-icon');
+    const pauseIcon = musicToggle.querySelector('.pause-icon');
+    
+    // Set initial volume (50%)
+    backgroundMusic.volume = 0.5;
+    
+    // Play/Pause Toggle
+    musicToggle.addEventListener('click', function() {
+        if (backgroundMusic.paused) {
+            backgroundMusic.play();
+            playIcon.style.display = 'none';
+            pauseIcon.style.display = 'block';
+            musicToggle.classList.add('playing');
+        } else {
+            backgroundMusic.pause();
+            playIcon.style.display = 'block';
+            pauseIcon.style.display = 'none';
+            musicToggle.classList.remove('playing');
+        }
+    });
+    
+    // Volume Control
+    volumeSlider.addEventListener('input', function() {
+        backgroundMusic.volume = this.value / 100;
+        
+        // Update slider gradient
+        const percentage = this.value;
+        this.style.background = `linear-gradient(to right, #c29d89 0%, #c29d89 ${percentage}%, #e2e8f0 ${percentage}%, #e2e8f0 100%)`;
+    });
+    
+    // Auto-play on first user interaction (some browsers block auto-play)
+    let hasInteracted = false;
+    document.addEventListener('click', function() {
+        if (!hasInteracted) {
+            backgroundMusic.play().then(() => {
+                playIcon.style.display = 'none';
+                pauseIcon.style.display = 'block';
+                musicToggle.classList.add('playing');
+            }).catch(err => {
+                console.log('Auto-play prevented. User needs to click play.');
+            });
+            hasInteracted = true;
+        }
+    }, { once: true });
+});
+// Wedding song MP3 scripts ends here
