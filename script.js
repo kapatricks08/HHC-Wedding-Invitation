@@ -273,3 +273,104 @@ window.addEventListener('load', function() {
     const countdownExists = document.getElementById('days') !== null;
     console.log('Countdown Timer:', countdownExists ? '✓ Elements found' : '✗ Elements missing');
 });
+
+
+
+//RSVP Scripts Starts here
+
+const attendanceSelect = document.getElementById("attendance");
+const bringingGuestsContainer = document.getElementById("bringingGuestsContainer");
+const guestCheckbox = document.getElementById("bringingGuests");
+const guestCountContainer = document.getElementById("guestCountContainer");
+const exactGuestContainer = document.getElementById("exactGuestCountContainer");
+const form = document.getElementById("rsvpForm");
+const popup = document.getElementById("rsvpPopup");
+const guestDropdown = document.getElementById("guestCount");
+const exactGuestInput = document.getElementById("exactGuestCount");
+
+// Show checkbox only if attendance = Yes
+attendanceSelect.addEventListener("change", function() {
+  if (this.value === "Yes") {
+    bringingGuestsContainer.style.display = "block";
+  } else {
+    bringingGuestsContainer.style.display = "none";
+    guestCountContainer.style.display = "none";
+    exactGuestContainer.style.display = "none";
+    guestCheckbox.checked = false;
+    exactGuestInput.value = "";
+  }
+});
+
+// Show dropdown only if checkbox is checked
+guestCheckbox.addEventListener("change", function() {
+  guestCountContainer.style.display = this.checked ? "block" : "none";
+  if (!this.checked) {
+    exactGuestContainer.style.display = "none";
+    exactGuestInput.value = "";
+  }
+});
+
+// Show exact number input only if "5 or more" is selected
+guestDropdown.addEventListener("change", function() {
+  if (this.value === "5+") {
+    exactGuestContainer.style.display = "block";
+  } else {
+    exactGuestContainer.style.display = "none";
+    exactGuestInput.value = "";
+  }
+});
+
+// Form submission
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const btn = form.querySelector(".rsvp-btn");
+  btn.disabled = true;
+  btn.textContent = "Sending...";
+
+  // Determine final guest count
+  let finalGuestCount = "1"; // Default is 1 (just the person themselves)
+  
+  if (guestCheckbox.checked) {
+    if (guestDropdown.value === "5+") {
+      finalGuestCount = exactGuestInput.value || "1";
+    } else if (guestDropdown.value !== "") {
+      finalGuestCount = guestDropdown.value;
+    }
+  }
+
+  const data = {
+    name: form.name.value,
+    email: form.email.value,
+    attendance: attendanceSelect.value,
+    bringingGuests: guestCheckbox.checked ? "Yes" : "No",
+    guestCount: finalGuestCount,
+    message: form.message.value
+  };
+
+  console.log("Data being sent:", data); // For debugging
+
+  fetch("https://script.google.com/macros/s/AKfycbyRiiQH8FT349r62g2MEnvavcFCEKxlK-n5FK1eeANivL7VS5ZTe1fy5Or1mv-MWj4/exec", {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  })
+  .then(() => {
+    form.reset();
+    bringingGuestsContainer.style.display = "none";
+    guestCountContainer.style.display = "none";
+    exactGuestContainer.style.display = "none";
+    popup.style.display = "flex";
+  })
+  .catch(() => alert("Network error. Please try again."))
+  .finally(() => {
+    btn.disabled = false;
+    btn.textContent = "Send RSVP";
+  });
+});
+
+function closePopup() {
+  popup.style.display = "none";
+}
+//RSVP Scripts Ends Here
